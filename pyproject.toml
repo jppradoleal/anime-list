@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "anime-list"
+version = "0.1.0"
+description = ""
+authors = ["Joao <joao.prado@buser.com.br>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Django = "^4.0.6"
+boto3 = "^1.24.41"
+localstack = "^1.0.3"
+psycopg2 = "^2.9.3"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
