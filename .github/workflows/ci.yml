@@ -7,14 +7,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up python
+      - name: Load commit 🚪
+        uses: actions/checkout@v3
+      - name: Set up python 🚜
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-      - name: Install dependencies
-        run: poetry install
-      - name: Test
-        run: pytest
+          cache: 'pip'
+          cache-dependency-path: 'poetry.lock'
+      - name: Install dependencies 🔧
+        run: pip install .
+      - name: Test 👩‍🔬
+        run: |
+          pytest
+          coverage report
