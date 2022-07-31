@@ -23,6 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-w=hb#6wfl&3+ff8o9x@u^2l1moynnaa#qdvgqd_b+ag3r$6)^%'
 
+AWS_ACCESS_KEY_ID=os.getenv('AWS_ACCESS_KEY_ID', '')
+AWS_SECRET_ACCESS_KEY=os.getenv('AWS_SECRET_ACCESS_KEY', '')
+AWS_STORAGE_BUCKET_NAME=os.getenv('AWS_STORAGE_BUCKET_NAME', 'anime-list')
+AWS_S3_VERIFY=os.getenv('AWS_S3_VERIFY', False) == True
+AWS_S3_ENDPOINT_URL=os.getenv('AWS_S3_ENDPOINT_URL', 'http://localhost:4566')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -38,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
     'animes'
 ]
 
@@ -127,3 +133,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AUTH_USER_MODEL = 'animes.User'
